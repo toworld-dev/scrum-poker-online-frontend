@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.button`
+interface ContainerProps {
+  chosen: boolean;
+}
+
+export const Container = styled.button<ContainerProps>`
   background: linear-gradient(
     180deg,
     rgba(63, 184, 254, 0.25) 72.92%,
@@ -13,4 +17,15 @@ export const Container = styled.button`
   color: #3e4c61;
   font-weight: bold;
   border: 0;
+
+  ${props =>
+    props.chosen &&
+    css`
+      background: linear-gradient(
+        180deg,
+        rgba(39, 159, 51, 0.25) 72.92%,
+        rgba(91, 168, 31, 0.25) 100%
+      );
+      color: #279f33;
+    `}
 `;

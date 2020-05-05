@@ -26,4 +26,8 @@ export const Body = styled.div`
 export const Footer = styled.div`
   display: flex;
   flex: 0;
+
+  button + button {
+    margin-left: 10px;
+  }
 `;

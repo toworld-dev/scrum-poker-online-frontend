@@ -4,10 +4,12 @@ import { Container } from './styles';
 
 interface OptionProps {
   value: string;
+  chose?: string[];
+  chosen?: boolean;
 }
 
-const Option: React.FC<OptionProps> = ({ value }) => {
-  return <Container>{value}</Container>;
+const Option: React.FC<OptionProps> = ({ value, chosen = false }) => {
+  return <Container chosen={chosen}>{value}</Container>;
 };
 
 export default Option;

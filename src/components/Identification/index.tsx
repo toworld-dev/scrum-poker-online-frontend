@@ -2,7 +2,11 @@ import React from 'react';
 
 import { Container, Main, Description } from './styles';
 
-const Identification: React.FC = () => {
+interface IdentificationProps {
+  openModal: (show: boolean) => void;
+}
+
+const Identification: React.FC<IdentificationProps> = ({ openModal }) => {
   return (
     <Container>
       <Main>
@@ -11,6 +15,9 @@ const Identification: React.FC = () => {
       </Main>
       <Description>
         <h3>Adicionar endpoint de alteração de programa</h3>
+        <button type="button" onClick={() => openModal(true)}>
+          Novo tópico
+        </button>
       </Description>
     </Container>
   );

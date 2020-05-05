@@ -2,8 +2,13 @@ import React from 'react';
 
 import { Container } from './styles';
 
-const User: React.FC = () => {
-  return <Container>H</Container>;
+interface UserProps {
+  data: string;
+  size?: 'small' | 'medium' | 'large';
+}
+
+const User: React.FC<UserProps> = ({ data, size = 'medium' }) => {
+  return <Container size={size}>{data[0]}</Container>;
 };
 
 export default User;
