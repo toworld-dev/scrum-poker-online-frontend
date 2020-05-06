@@ -4,6 +4,50 @@ interface ContainerProps {
   picked: boolean;
 }
 
+interface PositionProps {
+  index?: number;
+}
+
+const handlePosition = (index: number | undefined): string => {
+  switch (index) {
+    default:
+    case 0:
+      return `top: -5px; left: -5px;`;
+
+    case 1:
+      return `top: -20px; left: 15px;`;
+
+    case 2:
+      return `top: -20px; right: 10px;`;
+
+    case 3:
+      return `top: -5px; right: -10px;`;
+
+    case 5:
+      return `top: 20px; right: -10px;`;
+
+    case 6:
+      return `bottom: 0px; right: -5px;`;
+
+    case 7:
+      return `bottom: -10px; right: 20px;`;
+
+    case 8:
+      return `bottom: -5px; left: 5px;`;
+
+    case 9:
+      return `bottom: 20px; left: -10px;`;
+  }
+};
+
+export const Position = styled.div<PositionProps>`
+  position: absolute;
+  ${({ index }) =>
+    css`
+      ${handlePosition(index)}
+    `};
+`;
+
 export const Container = styled.button<ContainerProps>`
   background: linear-gradient(
     180deg,
@@ -28,4 +72,6 @@ export const Container = styled.button<ContainerProps>`
       );
       color: #279f33;
     `}
+
+  position: relative;
 `;

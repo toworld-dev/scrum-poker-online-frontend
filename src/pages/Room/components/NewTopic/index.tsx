@@ -21,8 +21,10 @@ const NewTopic: React.FC<NewTopicProps> = ({ visible, onClose }) => {
       <Content>
         <Form
           ref={formRef}
-          onSubmit={() => {
-            console.log('aq');
+          onSubmit={values => {
+            console.log(values);
+
+            onClose();
           }}
         >
           <h1>New topic</h1>

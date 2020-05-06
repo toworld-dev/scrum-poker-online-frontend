@@ -17,6 +17,7 @@ const socket: any = {
     1: ['henrique', 'Marcos'],
     5: ['Jhonatan'],
   },
+  picked: 1,
   accounts: ['henrique', 'Marcos', 'Jhonatan'],
 };
 
@@ -33,7 +34,7 @@ const Room: React.FC = () => {
           <Option
             key={option}
             value={option}
-            picked={false}
+            picked={socket.picked === option}
             choices={socket.vote[option] || []}
           />
         ))}
