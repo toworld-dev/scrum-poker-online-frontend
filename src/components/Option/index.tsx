@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { Container } from './styles';
 
 interface OptionProps {
   value: string;
-  chose?: string[];
-  chosen?: boolean;
+  choices?: string[];
+  picked?: boolean;
 }
 
-const Option: React.FC<OptionProps> = ({ value, chosen = false }) => {
-  return <Container chosen={chosen}>{value}</Container>;
+const Option: React.FC<OptionProps> = ({ value, picked = false }) => {
+  return <Container picked={picked}>{value}</Container>;
 };
 
-export default Option;
+export default memo(Option);

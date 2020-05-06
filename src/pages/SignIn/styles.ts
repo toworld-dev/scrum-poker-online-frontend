@@ -23,7 +23,6 @@ export const Content = styled.div`
     }
   }
 
-
   > a {
     color: #3fb8fe;
     display: block;

@@ -4,7 +4,7 @@ interface ContainerProps {
   size: string;
 }
 
-const handleSize = (size: string) => {
+const handleSize = (size: string): string => {
   switch (size) {
     case 'small':
       return 'width: 23px; height: 23px; font-size: 12px';

@@ -45,12 +45,15 @@ export const Description = styled.div`
     font-size: 8px;
     padding: 4px 8px;
     font-weight: bold;
-    margin-left: 10px;
     border: 0;
     transition: background-color 0.3s;
     &:hover {
       background: ${shade(0.2, '#3fb8fe')};
       color: #fff;
     }
+  }
+
+  h3 + button {
+    margin-left: 10px;
   }
 `;

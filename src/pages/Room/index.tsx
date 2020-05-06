@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import { Container, Header, Body, Footer } from './styles';
 
@@ -7,27 +7,60 @@ import Identification from '../../components/Identification';
 import User from '../../components/User';
 import Modal from '../../components/Modal';
 
+const socket: any = {
+  name: 'Nome da sala',
+  topic: {
+    description: 'Descrição',
+  },
+  vote: {
+    '1': ['henrique', 'Marcos'],
+    '5': ['henrique', 'Marcos'],
+  },
+  accounts: [
+    {
+      name: 'Henrique',
+    },
+  ],
+};
+
 const Room: React.FC = () => {
-  const userList: string[] = ['Marcos', 'Jhonatan'];
   const [showModal, setShowModal] = useState<boolean>(false);
+  const userList: string[] = ['Marcos', 'Jhonatan']; // teste
+
+  const handleOptions = useCallback(() => {
+    const options: string[] = [
+      '1',
+      '2',
+      '3',
+      '5',
+      '8',
+      '13',
+      '20',
+      '40',
+      '100',
+    ];
+
+    return (
+      <>
+        {options.map(option => (
+          <Option
+            key={option}
+            value={option}
+            picked={false}
+            choices={socket.vote[option] || []}
+          />
+        ))}
+      </>
+    );
+  }, []);
 
   return (
     <Container>
       <Header>
-        <Identification openModal={setShowModal} />
+        <Identification roomName="toWorld.dev" openModal={setShowModal} />
         <User data="henrique" />
       </Header>
-      <Body>
-        <Option value="1" />
-        <Option value="2" />
-        <Option value="3" chose={['Jhonatan']} />
-        <Option value="5" />
-        <Option value="8" chosen chose={['Henrique', 'Marcos']} />
-        <Option value="13" />
-        <Option value="20" />
-        <Option value="40" />
-        <Option value="100" />
-      </Body>
+      <Body>{handleOptions()}</Body>
       <Footer>
         {userList.map((user: string) => (
           <User size="small" key={user} data={user} />

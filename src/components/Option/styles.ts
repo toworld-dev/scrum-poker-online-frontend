@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 interface ContainerProps {
-  chosen: boolean;
+  picked: boolean;
 }
 
 export const Container = styled.button<ContainerProps>`
@@ -19,7 +19,7 @@ export const Container = styled.button<ContainerProps>`
   border: 0;
 
   ${props =>
-    props.chosen &&
+    props.picked &&
     css`
       background: linear-gradient(
         180deg,
