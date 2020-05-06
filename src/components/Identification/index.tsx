@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 
+import Chip from '../Chip';
 import { Container, Main, Description } from './styles';
 
 interface IdentificationProps {
@@ -21,9 +22,7 @@ const Identification: React.FC<IdentificationProps> = ({
       </Main>
       <Description>
         {topicDescription && <h3>{topicDescription}</h3>}
-        <button type="button" onClick={() => openModal(true)}>
-          New topic
-        </button>
+        <Chip onClick={() => openModal(true)}>New topic</Chip>
       </Description>
     </Container>
   );

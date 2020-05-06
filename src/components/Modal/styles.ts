@@ -19,6 +19,7 @@ export const Container = styled.div<ContainerProps>`
 
 export const Modal = styled.div`
   position: relative;
+  border-radius: 30px;
   background-color: #fefefe;
   margin: auto;
   padding: 0;
