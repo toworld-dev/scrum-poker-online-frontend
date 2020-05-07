@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react';
 
 import { Container, Header, Body, Footer } from './styles';
 
-import { useAuth } from '../../hooks/auth';
 import Option from '../../components/Option';
 import Identification from '../../components/Identification';
 import User from '../../components/User';

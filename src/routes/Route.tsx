@@ -1,11 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import {
   RouteProps as ReactDOMRouteProps,
   Route as ReactDOMRoute,
   Redirect,
 } from 'react-router-dom';
-
-import { useAuth } from '../hooks/auth';
+import { ApplicationState } from '../store';
 
 interface RouteProps extends ReactDOMRouteProps {
   isPrivate?: boolean;
@@ -17,7 +18,7 @@ const Route: React.FC<RouteProps> = ({
   component: Component,
   ...rest
 }) => {
-  const { roomId } = useAuth();
+  const roomId = useSelector<ApplicationState>(state => state.auth.data.roomId);
 
   return (
     <ReactDOMRoute

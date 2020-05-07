@@ -1,31 +1,25 @@
 import React, { useRef, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import { FiMail, FiUser, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 
-import api from '../../services/api';
-import { useToast } from '../../hooks/toast';
+import { ISignUpRequest } from '../../types/auth/IAuthRequest';
+import * as AuthActions from '../../store/ducks/auth/actions';
 import getValidationErrors from '../../utils/getValidationErrors';
-
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 import { Container, Content } from './styles';
 
-interface SignUpFormData {
-  name: string;
-  roomName: string;
-  password: string;
-}
-
 const SignUp: React.FC = () => {
+  const dispatch = useDispatch();
   const formRef = useRef<FormHandles>(null);
-  const { addToast } = useToast();
 
   const handleSubmit = useCallback(
-    async (data: SignUpFormData) => {
+    async (values: ISignUpRequest) => {
       try {
         formRef.current?.setErrors({});
 
@@ -35,36 +29,17 @@ const SignUp: React.FC = () => {
           password: Yup.string().required('Required'),
         });
 
-        await schema.validate(data, { abortEarly: false });
+        await schema.validate(values, { abortEarly: false });
 
-        const response = await api.post(`/room`, data);
-
-        const account = {
-          ...response.data,
-          roomId: response.data.id,
-          user: data.name,
-        };
-
-        localStorage.setItem(
-          '@ScrumPokerOnline:account',
-          JSON.stringify(account),
-        );
+        dispatch(AuthActions.signUpRequest(values));
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
-
-          return;
         }
-
-        addToast({
-          type: 'error',
-          title: 'Erro na criação de sala',
-          description: 'Não foi possivel criar uma sala, tente novamente',
-        });
       }
     },
-    [addToast],
+    [dispatch],
   );
 
   return (
