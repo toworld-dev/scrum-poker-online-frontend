@@ -4,16 +4,20 @@ import api from '../services/api';
 
 interface AuthState {
   token: string;
-  user: object;
+  user: string;
+  type: string;
+  roomId: string;
 }
 
 interface SignInCredentials {
-  email: string;
+  name: string;
+  roomId: string;
   password: string;
 }
 
 interface AuthContextData {
-  user: object;
+  account: string;
+  roomId: string;
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
 }
@@ -22,36 +26,39 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem('@ScrumPokerOnline:token');
-    const user = localStorage.getItem('@ScrumPokerOnline:user');
+    const account = localStorage.getItem('@ScrumPokerOnline:account');
 
-    if (token && user) {
-      return { token, user: JSON.parse(user) };
+    if (account) {
+      return JSON.parse(account);
     }
 
     return {} as AuthState;
   });
 
-  const signIn = useCallback(async ({ email, password }) => {
-    const reseponse = await api.post('sessions', { email, password });
+  const signIn = useCallback(async ({ name, roomId, password }) => {
+    const response = await api.post(`/room/enter/${roomId}`, {
+      name,
+      roomId,
+      password,
+    });
 
-    const { token, user } = reseponse.data;
+    const account = { ...response.data, user: name, roomId } as AuthState;
 
-    localStorage.setItem('@ScrumPokerOnline:token', token);
-    localStorage.setItem('@ScrumPokerOnline:user', JSON.stringify(user));
+    localStorage.setItem('@ScrumPokerOnline:account', JSON.stringify(account));
 
-    setData({ token, user });
+    setData(account);
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@ScrumPokerOnline:token');
-    localStorage.removeItem('@ScrumPokerOnline:user');
+    localStorage.removeItem('@ScrumPokerOnline:account');
 
     setData({} as AuthState);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ roomId: data.roomId, account: data.user, signIn, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );

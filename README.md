@@ -8,3 +8,5 @@ Scrum poker online open source in NestJS + ReactJS + Typescript
 - Backend integrations
 - Websockets
 - Theme
+- Reponsive
+- Logout feature

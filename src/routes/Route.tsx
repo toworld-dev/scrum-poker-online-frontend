@@ -5,7 +5,6 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-// import { Container } from './styles';
 import { useAuth } from '../hooks/auth';
 
 interface RouteProps extends ReactDOMRouteProps {
@@ -18,18 +17,18 @@ const Route: React.FC<RouteProps> = ({
   component: Component,
   ...rest
 }) => {
-  const { user } = useAuth();
+  const { roomId } = useAuth();
 
   return (
     <ReactDOMRoute
       {...rest}
       render={({ location }) => {
-        return isPrivate === !!user ? (
+        return isPrivate === !!roomId ? (
           <Component />
         ) : (
           <Redirect
             to={{
-              pathname: isPrivate ? '/' : '/enter-room',
+              pathname: isPrivate ? `/enter-room` : `/room/${roomId}`,
               state: { from: location },
             }}
           />
