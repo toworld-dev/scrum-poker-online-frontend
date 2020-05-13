@@ -3,7 +3,7 @@
  */
 export enum SocketTypes {
   ACCOUNTS = '@socket/ACCOUNTS',
-  ACCOUNTS_ONLINE = '@socket/ACCOUNTS_ONLINE',
+  ACCOUNT_ONLINE = '@socket/ACCOUNT_ONLINE',
 }
 
 /**

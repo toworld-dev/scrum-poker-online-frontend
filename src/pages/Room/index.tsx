@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { Container, Header, Body, Footer } from './styles';
 
 import Option from '../../components/Option';
@@ -7,7 +7,6 @@ import Identification from '../../components/Identification';
 import User from '../../components/User';
 import NewTopic from './components/NewTopic';
 import { ApplicationState } from '../../store';
-import { accountsOnline } from '../../store/ducks/socket/actions';
 
 const socket: any = {
   name: 'Nome da sala',
@@ -24,18 +23,9 @@ const socket: any = {
 
 const Room: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const dispatch = useDispatch();
-
-  const user = useSelector<ApplicationState, string>(
-    state => state.auth.data.user,
-  );
   const accounts = useSelector<ApplicationState, string[]>(
     state => state.socket.accounts,
   );
-
-  useEffect(() => {
-    dispatch(accountsOnline(user));
-  }, []);
 
   const handleOptions = useCallback(() => {
     const options: number[] = [1, 2, 3, 5, 8, 13, 20, 40, 100];
