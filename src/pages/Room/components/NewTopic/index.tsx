@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 
@@ -7,14 +8,15 @@ import Button from '../../../../components/Button';
 import Modal from '../../../../components/Modal';
 
 import { Content, Buttons } from './styles';
+import { ApplicationState } from '../../../../store';
+import { set } from '../../../../store/ducks/modal/actions';
 
-interface NewTopicProps {
-  visible: boolean;
-  onClose: () => void;
-}
-
-const NewTopic: React.FC<NewTopicProps> = ({ visible, onClose }) => {
+const NewTopic: React.FC = () => {
+  const dispatch = useDispatch();
   const formRef = useRef<FormHandles>(null);
+  const visible = useSelector<ApplicationState, boolean>(
+    state => state.modal.status,
+  );
 
   return (
     <Modal display={visible}>
@@ -24,7 +26,7 @@ const NewTopic: React.FC<NewTopicProps> = ({ visible, onClose }) => {
           onSubmit={values => {
             console.log(values);
 
-            onClose();
+            dispatch(set(false));
           }}
         >
           <h1>New topic</h1>
@@ -32,7 +34,7 @@ const NewTopic: React.FC<NewTopicProps> = ({ visible, onClose }) => {
           <Input name="topic" placeholder="Topic" />
 
           <Buttons>
-            <Button type="button" onClick={onClose}>
+            <Button type="button" onClick={() => dispatch(set(false))}>
               Close
             </Button>
             <Button type="submit">Save</Button>

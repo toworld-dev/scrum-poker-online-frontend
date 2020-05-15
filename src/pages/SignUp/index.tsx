@@ -24,8 +24,8 @@ const SignUp: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          username: Yup.string().required('Required'),
           name: Yup.string().required('Required'),
+          username: Yup.string().required('Required'),
           password: Yup.string().required('Required'),
         });
 

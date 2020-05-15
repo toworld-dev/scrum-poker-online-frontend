@@ -2,7 +2,7 @@
  * Action types
  */
 export enum RoomTypes {
-  REQUEST_GET = '@Room/REQUEST_GET',
+  TOPIC = '@Room/TOPIC',
 }
 
 /**
@@ -19,7 +19,7 @@ export interface Room {
  * State type
  */
 export interface RoomState {
-  readonly data: Room[];
+  readonly data: Room;
   readonly error: boolean;
   readonly loading: boolean;
 }

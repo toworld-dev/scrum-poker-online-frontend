@@ -6,6 +6,6 @@ export interface ISignInRequest {
 
 export interface ISignUpRequest {
   name: string;
-  roomName: string;
+  username: string;
   password: string;
 }

@@ -11,7 +11,7 @@ import { Auth } from './types';
 
 export function prepareResponse(data: any) {
   return {
-    user: data.name,
+    username: data.username,
     token: data.token,
     type: data.type,
     roomId: data.roomId || data.id,

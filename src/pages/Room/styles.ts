@@ -8,13 +8,6 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
-export const Header = styled.div`
-  display: flex;
-  flex: 0;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 export const Body = styled.div`
   display: flex;
   flex: 1;

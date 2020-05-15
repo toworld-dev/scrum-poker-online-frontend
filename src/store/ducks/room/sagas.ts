@@ -3,6 +3,7 @@ import { eventChannel } from 'redux-saga';
 import io from 'socket.io-client';
 import { Socket } from 'socket.io';
 
+import { listenTopic } from './actions';
 import { store } from '../..';
 
 function connect() {
@@ -27,9 +28,15 @@ function connect() {
 
 function subscribe(socket: Socket) {
   return eventChannel((emit: any) => {
-    socket.on('reconnect', () => {
-      console.log('Room reconnect');
+    socket.on('room', (data: any) => {
+      emit(listenTopic(data));
     });
+
+    socket.on('reconnect', () => {
+      socket.emit('showTopic');
+    });
+
+    socket.emit('showTopic'); // onStart
 
     return () => {};
   });

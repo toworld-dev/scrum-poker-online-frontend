@@ -8,6 +8,8 @@ import { AuthState } from './ducks/auth/types';
 import rootReducer from './ducks/rootReducer';
 import rootSaga from './ducks/rootSaga';
 import { AccountState } from './ducks/account/types';
+import { RoomState } from './ducks/room/types';
+import { ModalState } from './ducks/modal/types';
 
 const persistConfig = {
   key: 'root',
@@ -19,8 +21,10 @@ const middlewares = [];
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export interface ApplicationState {
+  modal: ModalState;
   auth: AuthState;
   account: AccountState;
+  room: RoomState;
 }
 
 const sagaMonitor =
