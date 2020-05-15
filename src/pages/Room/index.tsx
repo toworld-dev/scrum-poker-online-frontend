@@ -2,9 +2,7 @@ import React, { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { Container, Body, Footer } from './styles';
 
-import Option from '../../components/Option';
-import User from '../../components/User';
-import Header from '../../components/Header';
+import { Option, User, Header } from '../../components';
 import NewTopic from './components/NewTopic';
 import { ApplicationState } from '../../store';
 import { Account } from '../../store/ducks/account/types';

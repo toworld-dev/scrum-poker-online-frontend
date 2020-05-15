@@ -9,8 +9,7 @@ import * as Yup from 'yup';
 import { ISignInRequest } from '../../types/auth/IAuthRequest';
 import * as AuthActions from '../../store/ducks/auth/actions';
 import getValidationErrors from '../../utils/getValidationErrors';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import { Input, Button } from '../../components';
 
 import { Container, Content } from './styles';
 

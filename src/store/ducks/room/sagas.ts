@@ -5,6 +5,7 @@ import { Socket } from 'socket.io';
 
 import { listenTopic } from './actions';
 import { store } from '../..';
+import envrironment from '../../../config/environment';
 
 function connect() {
   const {
@@ -12,7 +13,7 @@ function connect() {
   } = store.getState();
 
   if (data?.token) {
-    const socket = io('http://localhost:3000/room', {
+    const socket = io(`${envrironment.socketURL}room`, {
       query: {
         token: data?.token,
       },

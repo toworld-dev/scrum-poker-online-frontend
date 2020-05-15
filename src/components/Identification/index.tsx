@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { Container, Main, Description } from './styles';
 import { Room } from '../../store/ducks/room/types';
 import Chip from '../Chip';
-import { Container, Main, Description } from './styles';
 import { ApplicationState } from '../../store';
 import { set } from '../../store/ducks/modal/actions';
 

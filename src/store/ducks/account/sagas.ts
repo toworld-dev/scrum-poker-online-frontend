@@ -6,6 +6,7 @@ import { Socket } from 'socket.io';
 import { listenOnline } from './actions';
 import { setMyClientId } from '../auth/actions';
 import { store } from '../..';
+import envrironment from '../../../config/environment';
 
 function connect() {
   const {
@@ -13,7 +14,7 @@ function connect() {
   } = store.getState();
 
   if (data?.token) {
-    const socket = io('http://localhost:3000/account', {
+    const socket = io(`${envrironment.socketURL}account`, {
       query: {
         token: data?.token,
       },

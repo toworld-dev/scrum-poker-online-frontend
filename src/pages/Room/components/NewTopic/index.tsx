@@ -3,9 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 
-import Input from '../../../../components/Input';
-import Button from '../../../../components/Button';
-import Modal from '../../../../components/Modal';
+import { Input, Button, Modal } from '../../../../components';
 
 import { Content, Buttons } from './styles';
 import { ApplicationState } from '../../../../store';
