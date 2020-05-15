@@ -1,4 +1,5 @@
-import { createStore, applyMiddleware, Store } from 'redux';
+/* eslint-disable no-console */
+import { createStore, applyMiddleware, Store, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
@@ -6,7 +7,7 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage for
 import { AuthState } from './ducks/auth/types';
 import rootReducer from './ducks/rootReducer';
 import rootSaga from './ducks/rootSaga';
-import { SocketState } from './ducks/socket/types';
+import { AccountState } from './ducks/account/types';
 
 const persistConfig = {
   key: 'root',
@@ -14,19 +15,30 @@ const persistConfig = {
   whitelist: ['auth'],
 };
 
+const middlewares = [];
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export interface ApplicationState {
   auth: AuthState;
-  socket: SocketState;
+  account: AccountState;
 }
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMonitor =
+  process.env.NODE_ENV === 'development'
+    ? console.tron.createSagaMonitor()
+    : null;
+const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
 
-const store: Store<ApplicationState> = createStore(
-  persistedReducer,
-  applyMiddleware(sagaMiddleware),
-);
+middlewares.push(sagaMiddleware);
+
+const store: Store<ApplicationState> =
+  process.env.NODE_ENV === 'development'
+    ? createStore(
+        persistedReducer,
+        compose(applyMiddleware(...middlewares), console.tron.createEnhancer()),
+      )
+    : createStore(persistedReducer, applyMiddleware(sagaMiddleware));
+
 const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);

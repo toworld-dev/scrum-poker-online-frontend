@@ -24,8 +24,8 @@ const SignUp: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
+          username: Yup.string().required('Required'),
           name: Yup.string().required('Required'),
-          roomName: Yup.string().required('Required'),
           password: Yup.string().required('Required'),
         });
 
@@ -49,14 +49,14 @@ const SignUp: React.FC = () => {
           <h1>Create Room</h1>
 
           <Input
-            name="name"
+            name="username"
             icon={FiUser}
             placeholder="Your name"
             type="text"
           />
 
           <Input
-            name="roomName"
+            name="name"
             icon={FiMail}
             placeholder="Room name"
             type="text"

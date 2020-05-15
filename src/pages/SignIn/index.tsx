@@ -24,7 +24,7 @@ const SignIn: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          name: Yup.string().required('Required'),
+          username: Yup.string().required('Required'),
           roomId: Yup.string().required('Required'),
           password: Yup.string().required('Required'),
         });
@@ -49,7 +49,7 @@ const SignIn: React.FC = () => {
           <h1>Enter Room</h1>
 
           <Input
-            name="name"
+            name="username"
             icon={FiUser}
             placeholder="Your name"
             type="text"

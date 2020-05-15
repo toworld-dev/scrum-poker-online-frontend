@@ -1,11 +1,12 @@
 import React, { memo } from 'react';
 
+import { Account } from '../../store/ducks/account/types';
 import { Container, Position } from './styles';
 import User from '../User';
 
 interface OptionProps {
   value: number;
-  choices?: string[];
+  choices?: Account[];
   picked?: boolean;
 }
 
@@ -17,9 +18,9 @@ const Option: React.FC<OptionProps> = ({
   const handleChoises = (): JSX.Element => {
     return (
       <>
-        {choices.map((choice, index) => {
+        {choices.map((choice: Account, index) => {
           return (
-            <Position key={choice} index={index}>
+            <Position key={choice.clientId} index={index}>
               <User size="small" data={choice} />
             </Position>
           );

@@ -7,6 +7,7 @@ import Identification from '../../components/Identification';
 import User from '../../components/User';
 import NewTopic from './components/NewTopic';
 import { ApplicationState } from '../../store';
+import { Account } from '../../store/ducks/account/types';
 
 const socket: any = {
   name: 'Nome da sala',
@@ -14,8 +15,22 @@ const socket: any = {
     description: 'Endpoint de criação de usuário',
   },
   vote: {
-    1: ['henrique', 'Marcos'],
-    5: ['Jhonatan'],
+    1: [
+      {
+        clientId: '123',
+        username: 'henrique',
+      },
+      {
+        clientId: '321',
+        username: 'Marcos',
+      },
+    ],
+    5: [
+      {
+        clientId: '456',
+        username: 'Jhonatan',
+      },
+    ],
   },
   picked: 1,
   accounts: ['henrique', 'Marcos', 'Jhonatan'],
@@ -23,8 +38,8 @@ const socket: any = {
 
 const Room: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const accounts = useSelector<ApplicationState, string[]>(
-    state => state.socket.accounts,
+  const accounts = useSelector<ApplicationState, Account[]>(
+    state => state.account.data,
   );
 
   const handleOptions = useCallback(() => {
@@ -52,14 +67,14 @@ const Room: React.FC = () => {
           roomName={socket.name}
           openModal={setShowModal}
         />
-        <User data="henrique" />
+        <User data={{ clientId: '123', username: 'Henrique' } as Account} />
       </Header>
       <Body>{handleOptions()}</Body>
       <Footer>
         {!!accounts && (
           <>
-            {accounts.map((user: string) => (
-              <User size="small" key={user} data={user} />
+            {accounts.map((user: Account) => (
+              <User size="small" key={user.clientId} data={user} />
             ))}
           </>
         )}
