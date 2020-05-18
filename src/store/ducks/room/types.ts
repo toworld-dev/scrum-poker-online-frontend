@@ -3,6 +3,7 @@
  */
 export enum RoomTypes {
   TOPIC = '@Room/TOPIC',
+  CREATE = '@Room/CREATE',
 }
 
 /**

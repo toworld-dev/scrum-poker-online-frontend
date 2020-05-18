@@ -6,8 +6,10 @@ import { Room } from '../../store/ducks/room/types';
 import Chip from '../Chip';
 import { ApplicationState } from '../../store';
 import { set } from '../../store/ducks/modal/actions';
+import { Auth } from '../../store/ducks/auth/types';
 
 const Identification: React.FC = () => {
+  const auth = useSelector<ApplicationState, Auth>(state => state.auth.data);
   const room = useSelector<ApplicationState, Room>(state => state.room.data);
   const description = room.topic?.description;
   const dispatch = useDispatch();
@@ -20,7 +22,9 @@ const Identification: React.FC = () => {
       </Main>
       <Description>
         {!!description && <h3>{description}</h3>}
-        <Chip onClick={() => dispatch(set(true))}>New topic</Chip>
+        {auth.type === 'admin' && (
+          <Chip onClick={() => dispatch(set(true))}>New topic</Chip>
+        )}
       </Description>
     </Container>
   );

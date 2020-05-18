@@ -6,6 +6,7 @@ import { Socket } from 'socket.io';
 import { listenTopic } from './actions';
 import { store } from '../..';
 import envrironment from '../../../config/environment';
+import { RoomTypes } from './types';
 
 function connect() {
   const {
@@ -52,12 +53,12 @@ function* read(socket: Socket) {
 }
 
 // Write functions
-// export function* write(socket: Socket) {
-//   while (true) {
-//     const { payload } = yield take(RoomTypes.ROOM);
-//     socket.emit('room.accounts', payload);
-//   }
-// }
+export function* write(socket: Socket) {
+  while (true) {
+    const { payload } = yield take(RoomTypes.CREATE);
+    socket.emit('createTopic', payload);
+  }
+}
 
 // Start
 export function* start() {
@@ -65,6 +66,6 @@ export function* start() {
 
   if (socket) {
     yield fork(read, socket);
-    // yield fork(write, socket);
+    yield fork(write, socket);
   }
 }

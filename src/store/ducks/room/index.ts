@@ -13,6 +13,13 @@ const reducer: Reducer<RoomState> = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         data: action.payload,
+        loading: false,
+      };
+    case RoomTypes.CREATE:
+      return {
+        ...state,
+        error: false,
+        loading: true,
       };
     default:
       return state;

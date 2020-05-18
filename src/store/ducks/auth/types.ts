@@ -16,7 +16,7 @@ export interface Auth {
   username: string;
   user: string;
   token: string;
-  type: string;
+  type: 'admin' | 'default';
   roomId: string;
   clientId?: string;
 }

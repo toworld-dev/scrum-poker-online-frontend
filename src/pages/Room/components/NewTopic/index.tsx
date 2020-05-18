@@ -8,6 +8,7 @@ import { Input, Button, Modal } from '../../../../components';
 import { Content, Buttons } from './styles';
 import { ApplicationState } from '../../../../store';
 import { set } from '../../../../store/ducks/modal/actions';
+import { createTopic } from '../../../../store/ducks/room/actions';
 
 const NewTopic: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,9 +23,12 @@ const NewTopic: React.FC = () => {
         <Form
           ref={formRef}
           onSubmit={values => {
-            console.log(values);
+            const topicName = values?.topic;
 
-            dispatch(set(false));
+            if (topicName) {
+              dispatch(createTopic(values.topic));
+              dispatch(set(false));
+            }
           }}
         >
           <h1>New topic</h1>
