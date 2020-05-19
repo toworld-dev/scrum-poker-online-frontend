@@ -12,6 +12,7 @@ export enum RoomTypes {
 export interface Room {
   name: string;
   topic: {
+    id?: string;
     description?: string;
   };
 }

@@ -5,13 +5,12 @@ import { ICreateVoteRequest } from '../../../types/vote/IVoteRequest';
 
 export const listenVotes = (data: Vote) => action(VoteTypes.VOTES, data);
 export const createVote = (vote: number) => {
-  const {
-    auth: { data },
-  } = store.getState();
+  const { auth, room } = store.getState();
 
   return action(VoteTypes.VOTE, {
     vote,
-    clientId: data.clientId,
-    username: data.username,
+    topic: room.data.topic?.id,
+    clientId: auth.data.clientId,
+    username: auth.data.username,
   } as ICreateVoteRequest);
 };
