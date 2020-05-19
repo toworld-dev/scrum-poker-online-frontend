@@ -10,6 +10,7 @@ import rootSaga from './ducks/rootSaga';
 import { AccountState } from './ducks/account/types';
 import { RoomState } from './ducks/room/types';
 import { ModalState } from './ducks/modal/types';
+import { VoteState } from './ducks/vote/types';
 
 const persistConfig = {
   key: 'root',
@@ -25,6 +26,7 @@ export interface ApplicationState {
   auth: AuthState;
   account: AccountState;
   room: RoomState;
+  vote: VoteState;
 }
 
 const sagaMonitor =

@@ -1,8 +1,10 @@
 import React, { memo } from 'react';
 
+import { useDispatch } from 'react-redux';
 import { Account } from '../../store/ducks/account/types';
 import { Container, Position } from './styles';
 import User from '../User';
+import { createVote } from '../../store/ducks/vote/actions';
 
 interface OptionProps {
   value: number;
@@ -15,6 +17,8 @@ const Option: React.FC<OptionProps> = ({
   choices = [],
   picked = false,
 }) => {
+  const dispatch = useDispatch();
+
   const handleChoises = (): JSX.Element => {
     return (
       <>
@@ -30,7 +34,13 @@ const Option: React.FC<OptionProps> = ({
   };
 
   return (
-    <Container picked={picked}>
+    <Container
+      picked={picked}
+      type="button"
+      onClick={() => {
+        dispatch(createVote(value));
+      }}
+    >
       {!!choices && handleChoises()}
       {value}
     </Container>
