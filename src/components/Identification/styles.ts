@@ -41,4 +41,8 @@ export const Description = styled.div`
   h3 + button {
     margin-left: 10px;
   }
+
+  button + button {
+    margin-left: 10px;
+  }
 `;

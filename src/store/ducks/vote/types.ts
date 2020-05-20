@@ -6,6 +6,8 @@ import { Account } from '../account/types';
 export enum VoteTypes {
   VOTES = '@Vote/VOTES',
   VOTE = '@Vote/VOTE',
+  SET_RESULT = '@Vote/SET_RESULT',
+  SHOW_RESULT = '@Vote/SHOW_RESULT',
 }
 
 /**
@@ -20,7 +22,7 @@ export interface Vote {
  */
 export interface VoteState {
   readonly data: Vote;
-  readonly mostVoted: number | undefined;
+  readonly mostVoted: number | boolean;
   readonly error: boolean;
   readonly loading: boolean;
 }

@@ -3,7 +3,7 @@ import { eventChannel } from 'redux-saga';
 import io from 'socket.io-client';
 import { Socket } from 'socket.io';
 
-import { listenVotes } from './actions';
+import { listenVotes, listenResult } from './actions';
 import { store } from '../..';
 import envrironment from '../../../config/environment';
 import { VoteTypes } from './types';
@@ -34,6 +34,10 @@ function subscribe(socket: Socket) {
       emit(listenVotes(data));
     });
 
+    socket.on('result', (data: any) => {
+      emit(listenResult(data));
+    });
+
     socket.on('reconnect', () => {
       socket.emit('showVotes');
     });
@@ -53,10 +57,17 @@ function* read(socket: Socket) {
 }
 
 // Write functions
-export function* write(socket: Socket) {
+export function* writeCreateVote(socket: Socket) {
   while (true) {
     const { payload } = yield take(VoteTypes.VOTE);
     socket.emit('createVote', payload);
+  }
+}
+
+export function* writeShowResults(socket: Socket) {
+  while (true) {
+    const { payload } = yield take(VoteTypes.SHOW_RESULT);
+    socket.emit('showResult', payload);
   }
 }
 
@@ -66,6 +77,7 @@ export function* start() {
 
   if (socket) {
     yield fork(read, socket);
-    yield fork(write, socket);
+    yield fork(writeCreateVote, socket);
+    yield fork(writeShowResults, socket);
   }
 }

@@ -14,3 +14,8 @@ export const createVote = (vote: number) => {
     username: auth.data.username,
   } as ICreateVoteRequest);
 };
+
+export const listenResult = (result: number | boolean) =>
+  action(VoteTypes.SET_RESULT, result);
+
+export const showResult = () => action(VoteTypes.SHOW_RESULT);

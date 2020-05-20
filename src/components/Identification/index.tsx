@@ -5,6 +5,7 @@ import { Container, Main, Description } from './styles';
 import { Room } from '../../store/ducks/room/types';
 import Chip from '../Chip';
 import { ApplicationState } from '../../store';
+import { showResult } from '../../store/ducks/vote/actions';
 import { set } from '../../store/ducks/modal/actions';
 import { Auth } from '../../store/ducks/auth/types';
 
@@ -23,7 +24,10 @@ const Identification: React.FC = () => {
       <Description>
         {!!description && <h3>{description}</h3>}
         {auth.type === 'admin' && (
-          <Chip onClick={() => dispatch(set(true))}>New topic</Chip>
+          <>
+            <Chip onClick={() => dispatch(set(true))}>New topic</Chip>
+            <Chip onClick={() => dispatch(showResult())}>Show result</Chip>
+          </>
         )}
       </Description>
     </Container>

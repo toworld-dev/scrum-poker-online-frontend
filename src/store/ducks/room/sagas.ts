@@ -7,7 +7,7 @@ import { listenTopic } from './actions';
 import { store } from '../..';
 import envrironment from '../../../config/environment';
 import { RoomTypes } from './types';
-import { listenVotes } from '../vote/actions';
+import { listenVotes, listenResult } from '../vote/actions';
 import { Vote } from '../vote/types';
 
 function connect() {
@@ -38,6 +38,7 @@ function subscribe(socket: Socket) {
 
     socket.on('newTopic', () => {
       emit(listenVotes({} as Vote));
+      emit(listenResult(false));
     });
 
     socket.on('reconnect', () => {
