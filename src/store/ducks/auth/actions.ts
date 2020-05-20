@@ -14,6 +14,3 @@ export const signUpRequest = (formRequest: ISignUpRequest) =>
 export const authSuccess = (data: Auth) => action(AuthTypes.SUCCCES, { data });
 
 export const authFailure = () => action(AuthTypes.FAILURE);
-
-export const setMyClientId = (socketId: string) =>
-  action(AuthTypes.SOCKET_ID, socketId);

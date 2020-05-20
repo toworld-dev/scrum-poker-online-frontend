@@ -4,7 +4,6 @@ import io from 'socket.io-client';
 import { Socket } from 'socket.io';
 
 import { listenOnline } from './actions';
-import { setMyClientId } from '../auth/actions';
 import { store } from '../..';
 import envrironment from '../../../config/environment';
 
@@ -31,7 +30,6 @@ function connect() {
 function subscribe(socket: Socket) {
   return eventChannel((emit: any) => {
     socket.on('online', (data: any) => {
-      emit(setMyClientId(socket.id));
       emit(listenOnline(data));
     });
 

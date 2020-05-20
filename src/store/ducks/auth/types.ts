@@ -6,7 +6,6 @@ export enum AuthTypes {
   SIGN_UP_REQUEST = '@auth/SIGN_UP_REQUEST',
   SUCCCES = '@auth/SUCCCES',
   FAILURE = '@auth/FAILURE',
-  SOCKET_ID = '@auth/SOCKET_ID',
 }
 
 /**

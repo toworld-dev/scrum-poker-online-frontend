@@ -12,14 +12,6 @@ const reducer: Reducer<AuthState> = (state = INITIAL_STATE, action) => {
     case AuthTypes.SIGN_IN_REQUEST:
     case AuthTypes.SIGN_UP_REQUEST:
       return { ...state, loading: true };
-    case AuthTypes.SOCKET_ID:
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          clientId: action.payload,
-        },
-      };
     case AuthTypes.SUCCCES:
       return {
         ...state,

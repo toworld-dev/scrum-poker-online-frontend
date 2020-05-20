@@ -33,14 +33,11 @@ function connect() {
 function subscribe(socket: Socket) {
   return eventChannel((emit: any) => {
     socket.on('room', (data: any) => {
-      const { room } = store.getState();
-
       emit(listenTopic(data));
+    });
 
-      if (room.data.topic?.id) {
-        // reset votes room
-        emit(listenVotes({} as Vote));
-      }
+    socket.on('newTopic', () => {
+      emit(listenVotes({} as Vote));
     });
 
     socket.on('reconnect', () => {
