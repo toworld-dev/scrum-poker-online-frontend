@@ -7,6 +7,8 @@ import { listenTopic } from './actions';
 import { store } from '../..';
 import envrironment from '../../../config/environment';
 import { RoomTypes } from './types';
+import { listenVotes } from '../vote/actions';
+import { Vote } from '../vote/types';
 
 function connect() {
   const {
@@ -31,7 +33,14 @@ function connect() {
 function subscribe(socket: Socket) {
   return eventChannel((emit: any) => {
     socket.on('room', (data: any) => {
+      const { room } = store.getState();
+
       emit(listenTopic(data));
+
+      if (room.data.topic?.id) {
+        // reset votes room
+        emit(listenVotes({} as Vote));
+      }
     });
 
     socket.on('reconnect', () => {

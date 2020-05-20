@@ -23,7 +23,7 @@ const Room: React.FC = () => {
           <Option
             key={option}
             value={option}
-            picked={option === 1} // WIP
+            // picked={option === 1} // WIP
             choices={votes[option] || []}
           />
         ))}
