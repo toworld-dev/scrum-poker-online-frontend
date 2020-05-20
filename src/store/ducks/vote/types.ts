@@ -20,6 +20,7 @@ export interface Vote {
  */
 export interface VoteState {
   readonly data: Vote;
+  readonly mostVoted: number | undefined;
   readonly error: boolean;
   readonly loading: boolean;
 }

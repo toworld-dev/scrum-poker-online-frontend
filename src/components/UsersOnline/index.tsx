@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 
 import { User } from '..';
@@ -24,4 +24,4 @@ const UsersOnline: React.FC = () => {
   );
 };
 
-export default UsersOnline;
+export default memo(UsersOnline);
