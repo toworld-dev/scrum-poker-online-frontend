@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 30px;
-  height: 100vh;
   display: flex;
-  align-items: stretch;
-  flex-direction: column;
+  flex: 0;
+
+  button + button {
+    margin-left: 10px;
+  }
 `;

@@ -7,6 +7,7 @@ import Modal from './Modal';
 import Option from './Option';
 import Tooltip from './Tooltip';
 import User from './User';
+import UsersOnline from './UsersOnline';
 
 export {
   Button,
@@ -18,4 +19,5 @@ export {
   Option,
   Tooltip,
   User,
+  UsersOnline,
 };
