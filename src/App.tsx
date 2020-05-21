@@ -5,8 +5,6 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 
-// import GlobalStyle from './styles/global'; // remove because bug -> https://github.com/styled-components/styled-components/issues/2911#issuecomment-592012166
-
 import Routes from './routes';
 
 import { store, persistor } from './store';
