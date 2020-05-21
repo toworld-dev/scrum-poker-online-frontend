@@ -15,7 +15,7 @@ export const createVote = (vote: number) => {
   } as ICreateVoteRequest);
 };
 
-export const listenResult = (result: number | boolean) =>
+export const listenResult = (result: number[]) =>
   action(VoteTypes.SET_RESULT, result);
 
 export const showResult = () => action(VoteTypes.SHOW_RESULT);

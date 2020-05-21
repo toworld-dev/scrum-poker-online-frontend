@@ -22,8 +22,8 @@ const Options: React.FC = () => {
           <Option
             key={option}
             value={option}
-            picked={mostVoted === option}
-            showChoices={!!mostVoted}
+            picked={mostVoted.indexOf(option) > -1}
+            showChoices={!!mostVoted.length}
             choices={data[option] || []}
           />
         ))}

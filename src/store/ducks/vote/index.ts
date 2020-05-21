@@ -4,7 +4,7 @@ import { VoteState, VoteTypes, Vote } from './types';
 const INITIAL_STATE: VoteState = {
   data: {} as Vote,
   error: false,
-  mostVoted: false,
+  mostVoted: [],
   loading: false,
 };
 

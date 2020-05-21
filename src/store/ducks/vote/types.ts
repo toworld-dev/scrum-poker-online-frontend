@@ -22,7 +22,7 @@ export interface Vote {
  */
 export interface VoteState {
   readonly data: Vote;
-  readonly mostVoted: number | boolean;
+  readonly mostVoted: number[];
   readonly error: boolean;
   readonly loading: boolean;
 }

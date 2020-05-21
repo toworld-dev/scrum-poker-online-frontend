@@ -38,7 +38,7 @@ function subscribe(socket: Socket) {
 
     socket.on('newTopic', () => {
       emit(listenVotes({} as Vote));
-      emit(listenResult(false));
+      emit(listenResult([]));
     });
 
     socket.on('reconnect', () => {
