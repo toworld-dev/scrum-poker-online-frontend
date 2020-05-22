@@ -19,6 +19,8 @@ const reducer: Reducer<AuthState> = (state = INITIAL_STATE, action) => {
         error: false,
         data: action.payload.data,
       };
+    case AuthTypes.LOGOUT:
+      return INITIAL_STATE;
     case AuthTypes.FAILURE:
       return {
         ...state,

@@ -5,6 +5,7 @@ import {
   RouteProps as ReactDOMRouteProps,
   Route as ReactDOMRoute,
   Redirect,
+  useParams,
 } from 'react-router-dom';
 import { ApplicationState } from '../store';
 
@@ -23,13 +24,15 @@ const Route: React.FC<RouteProps> = ({
   return (
     <ReactDOMRoute
       {...rest}
-      render={({ location }) => {
+      render={({ location, match: { params } }) => {
         return isPrivate === !!roomId ? (
           <Component />
         ) : (
           <Redirect
             to={{
-              pathname: isPrivate ? `/enter-room` : `/room/${roomId}`,
+              pathname: isPrivate
+                ? `/enter-room/${params?.id}`
+                : `/room/${roomId}`,
               state: { from: location },
             }}
           />

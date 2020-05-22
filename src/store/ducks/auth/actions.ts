@@ -5,6 +5,8 @@ import {
   ISignUpRequest,
 } from '../../../types/auth/IAuthRequest';
 
+export const logout = () => action(AuthTypes.LOGOUT);
+
 export const signInRequest = (formRequest: ISignInRequest) =>
   action(AuthTypes.SIGN_IN_REQUEST, formRequest);
 

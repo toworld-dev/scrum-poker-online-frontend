@@ -2,6 +2,7 @@
  * Action types
  */
 export enum AuthTypes {
+  LOGOUT = '@auth/LOGOUT',
   SIGN_IN_REQUEST = '@auth/SIGN_IN_REQUEST',
   SIGN_UP_REQUEST = '@auth/SIGN_UP_REQUEST',
   SUCCCES = '@auth/SUCCCES',

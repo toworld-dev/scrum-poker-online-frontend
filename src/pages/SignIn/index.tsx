@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { FiMail, FiUser, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import { ISignInRequest } from '../../types/auth/IAuthRequest';
@@ -14,6 +14,7 @@ import { Input, Button } from '../../components';
 import { Container, Content } from './styles';
 
 const SignIn: React.FC = () => {
+  const params = useParams<{ id: string | undefined }>();
   const dispatch = useDispatch();
   const formRef = useRef<FormHandles>(null);
 
@@ -44,7 +45,11 @@ const SignIn: React.FC = () => {
   return (
     <Container>
       <Content>
-        <Form ref={formRef} onSubmit={handleSubmit}>
+        <Form
+          initialData={{ roomId: params?.id }}
+          ref={formRef}
+          onSubmit={handleSubmit}
+        >
           <h1>Enter Room</h1>
 
           <Input

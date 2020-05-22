@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { Container } from './styles';
-import { Header, UsersOnline } from '../../components';
-import { NewTopic, Options } from './components';
+import { UsersOnline } from '../../components';
+import { NewTopic, Options, Header } from './components';
 
 const Room: React.FC = () => {
   return (
