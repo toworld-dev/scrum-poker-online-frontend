@@ -7,6 +7,7 @@ import { listenVotes, listenResult } from './actions';
 import { store } from '../..';
 import envrironment from '../../../config/environment';
 import { VoteTypes } from './types';
+import { AuthTypes } from '../auth/types';
 
 function connect() {
   const {
@@ -71,6 +72,17 @@ export function* writeShowResults(socket: Socket) {
   }
 }
 
+export function* disconnect(socket: Socket) {
+  let logout = false;
+
+  while (!logout) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { payload } = yield take(AuthTypes.LOGOUT);
+    socket.disconnect();
+    logout = true;
+  }
+}
+
 // Start
 export function* start() {
   const socket = yield call(connect);
@@ -79,5 +91,6 @@ export function* start() {
     yield fork(read, socket);
     yield fork(writeCreateVote, socket);
     yield fork(writeShowResults, socket);
+    yield fork(disconnect, socket);
   }
 }

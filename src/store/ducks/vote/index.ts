@@ -1,5 +1,6 @@
 import { Reducer } from 'redux';
 import { VoteState, VoteTypes, Vote } from './types';
+import { AuthTypes } from '../auth/types';
 
 const INITIAL_STATE: VoteState = {
   data: {} as Vote,
@@ -27,6 +28,8 @@ const reducer: Reducer<VoteState> = (state = INITIAL_STATE, action) => {
         error: false,
         loading: true,
       };
+    case AuthTypes.LOGOUT:
+      return INITIAL_STATE;
     default:
       return state;
   }

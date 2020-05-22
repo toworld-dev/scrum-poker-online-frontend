@@ -5,7 +5,6 @@ import {
   RouteProps as ReactDOMRouteProps,
   Route as ReactDOMRoute,
   Redirect,
-  useParams,
 } from 'react-router-dom';
 import { ApplicationState } from '../store';
 

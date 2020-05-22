@@ -1,5 +1,6 @@
 import { Reducer } from 'redux';
 import { AccountState, AccountTypes } from './types';
+import { AuthTypes } from '../auth/types';
 
 const INITIAL_STATE: AccountState = {
   data: [],
@@ -14,6 +15,8 @@ const reducer: Reducer<AccountState> = (state = INITIAL_STATE, action) => {
         ...state,
         data: action.payload,
       };
+    case AuthTypes.LOGOUT:
+      return INITIAL_STATE;
     default:
       return state;
   }

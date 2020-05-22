@@ -6,6 +6,7 @@ import { Socket } from 'socket.io';
 import { listenOnline } from './actions';
 import { store } from '../..';
 import envrironment from '../../../config/environment';
+import { AuthTypes } from '../auth/types';
 
 function connect() {
   const {
@@ -51,11 +52,23 @@ function* read(socket: Socket) {
   }
 }
 
+export function* disconnect(socket: Socket) {
+  let logout = false;
+
+  while (!logout) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { payload } = yield take(AuthTypes.LOGOUT);
+    socket.disconnect();
+    logout = true;
+  }
+}
+
 // Start
 export function* start() {
   const socket = yield call(connect);
 
   if (socket) {
     yield fork(read, socket);
+    yield fork(disconnect, socket);
   }
 }
