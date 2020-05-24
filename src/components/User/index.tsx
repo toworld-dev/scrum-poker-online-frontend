@@ -7,15 +7,22 @@ interface UserProps {
   data: Account;
   size?: 'small' | 'medium' | 'large';
   onClick?: () => void;
+  color?: string | undefined;
 }
 
 const User: React.FC<UserProps> = ({
   data,
   size = 'medium',
   onClick = () => {},
+  color,
 }) => {
   return (
-    <Container onClick={() => onClick()} type="button" size={size}>
+    <Container
+      color={color}
+      onClick={() => onClick()}
+      type="button"
+      size={size}
+    >
       {data.username.substring(0, 1)}
     </Container>
   );
