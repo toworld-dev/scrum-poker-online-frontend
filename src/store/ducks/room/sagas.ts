@@ -68,7 +68,6 @@ export function* write(socket: Socket) {
   }
 }
 
-// Write functions
 export function* disconnect(socket: Socket) {
   let logout = false;
 
