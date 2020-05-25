@@ -3,13 +3,13 @@ import { useDispatch } from 'react-redux';
 import { FiMail, FiUser, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
-import { Link, useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import { ISignInRequest } from '../../types/auth/IAuthRequest';
 import * as AuthActions from '../../store/ducks/auth/actions';
 import getValidationErrors from '../../utils/getValidationErrors';
-import { Input, Button } from '../../components';
+import { Input, Button, BuiltWith } from '../../components';
 
 import { Container, Content } from './styles';
 
@@ -78,6 +78,7 @@ const SignIn: React.FC = () => {
 
         <Link to="/create-room">Create room</Link>
       </Content>
+      <BuiltWith />
     </Container>
   );
 };

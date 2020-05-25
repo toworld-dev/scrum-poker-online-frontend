@@ -6,5 +6,16 @@ import Option from './Option';
 import Tooltip from './Tooltip';
 import User from './User';
 import UsersOnline from './UsersOnline';
+import BuiltWith from './BuiltWith';
 
-export { Button, Chip, Input, Modal, Option, Tooltip, User, UsersOnline };
+export {
+  Button,
+  Chip,
+  Input,
+  Modal,
+  Option,
+  Tooltip,
+  User,
+  UsersOnline,
+  BuiltWith,
+};

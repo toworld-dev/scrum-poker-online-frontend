@@ -4,7 +4,12 @@ import { shade } from 'polished';
 export const Container = styled.div`
   height: 100vh;
   display: flex;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   align-items: stretch;
+  align-content: stretch;
 `;
 
 export const Content = styled.div`
@@ -13,6 +18,7 @@ export const Content = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  flex: 1;
 
   form {
     width: 300px;
@@ -37,5 +43,4 @@ export const Content = styled.div`
     &:hover {
       color: ${shade(0.2, '#3fb8fe')};
     }
-  }
 `;

@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 import { ISignUpRequest } from '../../types/auth/IAuthRequest';
 import * as AuthActions from '../../store/ducks/auth/actions';
 import getValidationErrors from '../../utils/getValidationErrors';
-import { Input, Button } from '../../components';
+import { Input, Button, BuiltWith } from '../../components';
 
 import { Container, Content } from './styles';
 
@@ -73,6 +73,7 @@ const SignUp: React.FC = () => {
 
         <Link to="/enter-room">Enter room</Link>
       </Content>
+      <BuiltWith />
     </Container>
   );
 };
