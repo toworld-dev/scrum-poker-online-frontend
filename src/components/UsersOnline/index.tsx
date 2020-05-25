@@ -5,40 +5,30 @@ import { User } from '..';
 import { ApplicationState } from '../../store';
 import { Account } from '../../store/ducks/account/types';
 import { Container } from './styles';
-import { Vote } from '../../store/ducks/vote/types';
 
 interface IUsersOnline {
-  account: AccountState[];
-  vote: VoteState;
+  data: Account[];
+  userVoted: Account[];
 }
 
 const UsersOnline: React.FC = () => {
-  const { account, vote } = useSelector<Omit<ApplicationState, 'modal' | 'auth', 'room'>, IUsersOnline>(
-    state => state,
+  const { userVoted, data } = useSelector<ApplicationState, IUsersOnline>(
+    state => state.account,
   );
 
-  console.log('aqui');
   const handleUserVoted = useCallback(
-    (clientId: string) => {
-      Object.keys(votes).forEach((key: any) => {
-        votes[key].forEach((vote: any) => {
-          if (vote.clientId === clientId) {
-            return '#000';
-          }
-        });
-      });
-
-      // eslint-disable-next-line no-useless-return
-      return undefined;
+    (clientId: string): string | undefined => {
+      const voted = !!userVoted.find(account => account.clientId === clientId);
+      return voted ? '#279f33' : undefined;
     },
-    [votes],
+    [userVoted],
   );
 
   return (
     <Container>
-      {!!accounts && (
+      {!!data && (
         <>
-          {accounts.map((user: Account) => (
+          {data.map((user: Account) => (
             <User
               color={handleUserVoted(user.clientId)}
               size="small"

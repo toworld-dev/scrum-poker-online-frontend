@@ -18,6 +18,7 @@ export interface Account {
  */
 export interface AccountState {
   readonly data: Account[];
+  readonly userVoted: Account[];
   readonly error: boolean;
   readonly loading: boolean;
 }
