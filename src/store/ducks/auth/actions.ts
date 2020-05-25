@@ -15,4 +15,5 @@ export const signUpRequest = (formRequest: ISignUpRequest) =>
 
 export const authSuccess = (data: Auth) => action(AuthTypes.SUCCCES, { data });
 
-export const authFailure = () => action(AuthTypes.FAILURE);
+export const authFailure = (error?: any) =>
+  action(AuthTypes.FAILURE, { error });

@@ -1,4 +1,5 @@
 import { call, put } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 import api from '../../../services/api';
 
 import { IActionSaga } from '../../../types/saga';
@@ -37,6 +38,7 @@ export function* signInRequest(action: IActionSaga<ISignInRequest>) {
       ),
     );
   } catch (err) {
+    toast.error('Não foi possivel acessar');
     yield put(authFailure());
   }
 }
@@ -55,6 +57,7 @@ export function* signUpRequest(action: IActionSaga<ISignUpRequest>) {
       ),
     );
   } catch (err) {
-    yield put(authFailure());
+    toast.error('Não foi possivel criar a sala');
+    yield put(authFailure('Não foi possivel criar a sala'));
   }
 }

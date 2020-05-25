@@ -4,6 +4,7 @@ import './config/ReactotronConfig';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ToastContainer } from 'react-toastify';
 
 import Routes from './routes';
 
@@ -15,6 +16,7 @@ const App: React.FC = () => {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Routes />
+          <ToastContainer autoClose={2000} />
         </PersistGate>
       </Provider>
     </BrowserRouter>

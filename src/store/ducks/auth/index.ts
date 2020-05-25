@@ -11,7 +11,7 @@ const reducer: Reducer<AuthState> = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case AuthTypes.SIGN_IN_REQUEST:
     case AuthTypes.SIGN_UP_REQUEST:
-      return { ...state, loading: true };
+      return { ...state, loading: true, error: false };
     case AuthTypes.SUCCCES:
       return {
         ...state,
@@ -25,7 +25,7 @@ const reducer: Reducer<AuthState> = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
-        error: true,
+        error: action.payload.error || false,
         data: {} as Auth,
       };
     default:

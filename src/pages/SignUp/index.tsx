@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FiMail, FiUser, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -12,10 +12,16 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import { Input, Button, BuiltWith } from '../../components';
 
 import { Container, Content } from './styles';
+import { ApplicationState } from '../../store';
+import { AuthState } from '../../store/ducks/auth/types';
 
 const SignUp: React.FC = () => {
   const dispatch = useDispatch();
   const formRef = useRef<FormHandles>(null);
+
+  const { loading } = useSelector<ApplicationState, AuthState>(
+    state => state.auth,
+  );
 
   const handleSubmit = useCallback(
     async (values: ISignUpRequest) => {
@@ -68,7 +74,9 @@ const SignUp: React.FC = () => {
             type="password"
           />
 
-          <Button type="submit">Access</Button>
+          <Button disabled={loading} type="submit">
+            Access
+          </Button>
         </Form>
 
         <Link to="/enter-room">Enter room</Link>

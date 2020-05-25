@@ -27,5 +27,5 @@ export interface Auth {
 export interface AuthState {
   readonly data: Auth;
   readonly loading: boolean;
-  readonly error: boolean;
+  readonly error: string | boolean;
 }
