@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import ReactGA from 'react-ga';
 
 import {
   RouteProps as ReactDOMRouteProps,
@@ -7,6 +8,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import { ApplicationState } from '../store';
+import environment from '../config/environment';
 
 interface RouteProps extends ReactDOMRouteProps {
   isPrivate?: boolean;
@@ -18,15 +20,20 @@ const Route: React.FC<RouteProps> = ({
   component: Component,
   ...rest
 }) => {
+  ReactGA.initialize(environment.analyticsCode);
   const roomId = useSelector<ApplicationState>(state => state.auth.data.roomId);
 
   return (
     <ReactDOMRoute
       {...rest}
       render={({ location, match: { params } }) => {
-        return isPrivate === !!roomId ? (
-          <Component />
-        ) : (
+        if (isPrivate === !!roomId) {
+          ReactGA.pageview(isPrivate ? 'room' : '/');
+          return <Component />;
+        }
+
+        ReactGA.pageview(isPrivate ? 'enter-room' : 'room');
+        return (
           <Redirect
             to={{
               pathname: isPrivate
