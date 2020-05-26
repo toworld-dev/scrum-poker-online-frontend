@@ -51,7 +51,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "prod": "react-scripts build $BUILD_ENV",
+    "prod": "react-scripts build $PROD_URL $ANALYTICS",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
