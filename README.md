@@ -1,18 +1,16 @@
 # Scrum poker online frontend
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-Scrum poker online open source in NestJS + ReactJS + Typescript
+Scrum Poker Realtime open source in NestJS + ReactJS + Typescript
 
-#### Changelog
+Documentation of project and features: https://www.notion.so/henriquew/Scrum-Poker-Realtime-102288d6a54d4902abbce7eabf4abd4e
 
-- Layout
-- Backend integrations
-- Websockets
-- Theme
-- Reponsive
-- Logout feature
+[![Watch the video](https://i.imgur.com/EVwtYdc.png)](https://www.youtube.com/embed/joYhKwexWRY)
 
 ## Contributors ✨
 
@@ -29,6 +27,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
