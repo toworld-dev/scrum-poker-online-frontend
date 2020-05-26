@@ -5,6 +5,7 @@ import account from './account';
 import room from './room';
 import modal from './modal';
 import vote from './vote';
+import theme from './theme';
 
 export default combineReducers({
   auth,
@@ -12,4 +13,5 @@ export default combineReducers({
   room,
   modal,
   vote,
+  theme,
 });

@@ -10,6 +10,7 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: stretch;
   align-content: stretch;
+  background: ${props => props.theme.colors.background};
 `;
 
 export const Content = styled.div`
