@@ -11,11 +11,12 @@ import { AccountState } from './ducks/account/types';
 import { RoomState } from './ducks/room/types';
 import { ModalState } from './ducks/modal/types';
 import { VoteState } from './ducks/vote/types';
+import { ThemeState } from './ducks/theme/types';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'theme'],
 };
 
 const middlewares = [];
@@ -27,6 +28,7 @@ export interface ApplicationState {
   account: AccountState;
   room: RoomState;
   vote: VoteState;
+  theme: ThemeState;
 }
 
 const sagaMonitor =

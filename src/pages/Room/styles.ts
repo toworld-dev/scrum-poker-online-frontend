@@ -6,4 +6,10 @@ export const Container = styled.div`
   display: flex;
   align-items: stretch;
   flex-direction: column;
+  background: ${props => props.theme.colors.background};
+`;
+
+export const Footer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;

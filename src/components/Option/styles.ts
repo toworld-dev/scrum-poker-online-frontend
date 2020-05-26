@@ -49,11 +49,7 @@ export const Position = styled.div<PositionProps>`
 `;
 
 export const Container = styled.button<ContainerProps>`
-  background: linear-gradient(
-    180deg,
-    rgba(63, 184, 254, 0.25) 72.92%,
-    rgba(63, 184, 254, 0.25) 100%
-  );
+  background: ${props => props.theme.colors.primary};
   border-radius: 30px;
   width: 74px;
   height: 74px;

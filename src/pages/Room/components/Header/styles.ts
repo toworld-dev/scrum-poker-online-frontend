@@ -11,7 +11,7 @@ export const Head = styled.div`
   justify-content: space-between;
 
   h1 {
-    color: #3e4c61;
+    color: ${props => props.theme.colors.text};
   }
 `;
 
@@ -25,6 +25,7 @@ export const Body = styled.div`
   h3 {
     font-size: 24px;
     font-weight: bold;
+    color: ${props => props.theme.colors.text};
   }
 
   @media (max-width: ${breakpoints.sm}) {

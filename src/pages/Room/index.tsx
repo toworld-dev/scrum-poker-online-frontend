@@ -1,15 +1,18 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { Container, Footer } from './styles';
 import { UsersOnline } from '../../components';
-import { NewTopic, Options, Header } from './components';
+import { NewTopic, Options, Header, ThemeToggle } from './components';
 
 const Room: React.FC = () => {
   return (
     <Container>
       <Header />
       <Options />
-      <UsersOnline />
+      <Footer>
+        <UsersOnline />
+        <ThemeToggle />
+      </Footer>
       <NewTopic />
     </Container>
   );
