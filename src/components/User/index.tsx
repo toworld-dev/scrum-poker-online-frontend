@@ -22,6 +22,7 @@ const User: React.FC<UserProps> = ({
       onClick={() => onClick()}
       type="button"
       size={size}
+      title={data.username}
     >
       {data.username.substring(0, 1)}
     </Container>
